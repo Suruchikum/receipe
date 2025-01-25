@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Together = require("together-ai");
+const { checkAPIStatus, createTTSJob } = require("../services/service");
 
 const API_KEY = process.env.TOGETHER_API_KEY;
 const together = new Together({ apiKey: API_KEY });
@@ -59,6 +60,29 @@ router.get("/recipeStream", async (req, res) => {
       success: false,
       message: "Error generating recipe." + error.message,
     });
+  }
+});
+
+router.post("/tts", async (req, res) => {
+  let { text } = req.body;
+
+  if (!text || text.trim() === "") {
+    throw new Error("No text available");
+  }
+  try {
+    text = text.replace(/[^a-zA-Z0-9\s]/g, "");
+    console.log("received text", text);
+    const createJobResponse = await createTTSJob({ text });
+    const { eta, id } = createJobResponse?.data;
+    if (!id) {
+      throw new Error("Failed to create TTS job id ");
+    }
+    const jobStatusResponse = await checkAPIStatus(eta, id);
+
+    console.log("job status URL ", jobStatusResponse);
+  } catch (error) {
+    console.log("Speed generation failed", error);
+    throw error;
   }
 });
 

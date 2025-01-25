@@ -14,6 +14,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", indexRoutes);
 app.use("/api", chatRoutes);
 
-app.listen(PORT, () => {
+// Call the functions after the server starts
+app.listen(PORT, async () => {
   console.log(`Server is running on port:${PORT}`);
 });
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port:${PORT}`);
+// });
