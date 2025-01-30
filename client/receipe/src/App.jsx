@@ -13,7 +13,7 @@ function App() {
 
   async function generateVoice(text) {
     try {
-      const response = await fetch("http://localhost:4800/api/tts", {
+      const response = await fetch("http://localhost:4700/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
@@ -75,7 +75,7 @@ function App() {
   async function checkJobStatus(jobId) {
     try {
       const response = await fetch(
-        `http://localhost:4800/api/tts/status?id=${jobId}`
+        `http://localhost:4700/api/tts/status?id=${jobId}`
       );
       const data = await response.json();
       console.log("Job Status:", data);
