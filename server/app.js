@@ -5,7 +5,7 @@ require("dotenv").config();
 const indexRoutes = require("./routes/indexRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const app = express();
-const PORT = 4700;
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());

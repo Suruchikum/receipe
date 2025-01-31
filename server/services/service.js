@@ -1,10 +1,7 @@
 const axios = require("axios");
 require("dotenv").config();
 
-const RAPIDAPI_KEY =
-  process.env.RAPIDAPI_KEY ||
-  "529d6bbc2amsh3a404bb163199d1p1f4686jsn41a8e98f594f";
-console.log("RAPIDAPI_KEY: ", RAPIDAPI_KEY);
+const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
 
 const RAPIDAPI_HOST = "large-text-to-speech.p.rapidapi.com";
 
