@@ -14,6 +14,10 @@ if (!API_KEY) {
   });
 }
 
+router.get("/test", (req, res) => {
+  res.status(200).json({ message: "Working...", status: 200 });
+});
+
 router.get("/recipeStream", async (req, res) => {
   const { ingredients, mealType, cuisine, cookingTime, complexity } = req.query;
 

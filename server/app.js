@@ -11,8 +11,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", indexRoutes);
 app.use("/api", chatRoutes);
+app.use("/", indexRoutes);
 
 // Call the functions after the server starts
 app.listen(PORT, async () => {
