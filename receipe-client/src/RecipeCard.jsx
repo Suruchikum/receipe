@@ -111,7 +111,7 @@
 
 // export default RecipeCard;
 import React, { useState } from "react";
-import "./index.css"; // Import the CSS file
+import "./index.css";
 
 const API_BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 console.log("API_BASE_URL: ", API_BASE_URL);
@@ -122,7 +122,7 @@ const RecipeCard = ({ recipeContent, setRecipeImage }) => {
   const [cuisine, setCuisine] = useState("");
   const [cookingTime, setCookingTime] = useState("Less than 30 minutes");
   const [complexity, setComplexity] = useState("Beginner");
-  const [image, setImage] = useState("/images/food.jpeg");
+  const [image, setImage] = useState("/images/food7.jpg");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -144,8 +144,8 @@ const RecipeCard = ({ recipeContent, setRecipeImage }) => {
 
       if (data.success) {
         recipeContent(data.message);
-        setImage(data.imageUrl || "/images/food.jpeg"); // Update image from API
-        setRecipeImage(data.imageUrl || "/images/food.jpeg");
+        setImage(data.imageUrl || "/images/food7.jpg"); // Update image from API
+        setRecipeImage(data.imageUrl || "/images/food7.jpg");
         // Reset form
         setIngredients("");
         setCuisine("");
@@ -157,6 +157,26 @@ const RecipeCard = ({ recipeContent, setRecipeImage }) => {
       console.error("Fetch Error:", error);
     }
   };
+  // const generateImage = async (ingredients) => {
+  //   try {
+  //     const response = await fetch("http://your-server-url/generate-image", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ ingredients }),
+  //     });
+
+  //     const data = await response.json();
+  //     if (data.success) {
+  //       console.log("Generated Image URL:", data.imageUrl);
+  //     } else {
+  //       console.error("Failed to generate image");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
 
   return (
     <div className="head">
