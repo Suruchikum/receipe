@@ -8,6 +8,7 @@ function App() {
   // const [text, setText] = useState("");
   // const [audioUrl, setAudioUrl] = useState(null);
   const [recipeText, setRecipeText] = useState("");
+  const [recipeImage, setRecipeImage] = useState("");
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -88,7 +89,10 @@ function App() {
     <div className="App">
       <div className="flex flex-row h-full my-4 gap-2 justify-center">
         {/* Recipe Input Form */}
-        <RecipeCard recipeContent={setRecipeText} />
+        <RecipeCard
+          recipeContent={setRecipeText}
+          setRecipeImage={setRecipeImage}
+        />
         {recipeText && (
           <div className="speakersGroup">
             <button onClick={readRecipe} disabled={isSpeaking}>
@@ -101,7 +105,10 @@ function App() {
           </div>
         )}
         {/* Recipe Output Box */}
-        <div className="recepieContainer">
+        <div
+          className="recepieContainer"
+          style={{ backgroundImage: `url(${recipeImage})` }}
+        >
           {<Markdown>{recipeText}</Markdown> ||
             "Your recipe will appear here..."}
         </div>
