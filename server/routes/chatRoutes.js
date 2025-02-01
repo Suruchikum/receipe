@@ -54,9 +54,10 @@ router.get("/recipeStream", async (req, res) => {
     for await (const chunk of response) {
       recepie += chunk.choices[0]?.delta?.content || "";
     }
-    res.status(400).json({
+    res.status(200).json({
       success: true,
       message: recepie,
+      imageUrl: null, //`${req.protocol}://${req.get("host")}/images/food.jpeg`,
     });
   } catch (error) {
     console.error("Error:", error);
