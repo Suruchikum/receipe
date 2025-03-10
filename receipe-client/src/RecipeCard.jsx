@@ -186,51 +186,66 @@ const RecipeCard = ({ recipeContent, setRecipeImage }) => {
           <img src={image} alt="Recipe" />
         </div> */}
 
-        <label>Ingredients</label>
-        <input
-          type="text"
-          placeholder="Enter ingredients (comma-separated)"
-          value={ingredients}
-          onChange={(e) => setIngredients(e.target.value)}
-        />
+        <div>
+          <label>Ingredients</label>
+          <input
+            type="text"
+            placeholder="Enter ingredients (comma-separated)"
+            value={ingredients}
+            onChange={(e) => setIngredients(e.target.value)}
+          />
+        </div>
 
-        <label>Meal Type</label>
-        <select value={mealType} onChange={(e) => setMealType(e.target.value)}>
-          <option>Breakfast</option>
-          <option>Lunch</option>
-          <option>Dinner</option>
-          <option>Snack</option>
-        </select>
+        <div>
+          <label>Meal Type</label>
+          <select
+            value={mealType}
+            onChange={(e) => setMealType(e.target.value)}
+          >
+            <option>Breakfast</option>
+            <option>Lunch</option>
+            <option>Dinner</option>
+            <option>Snack</option>
+          </select>
+        </div>
 
-        <label>Cuisine</label>
-        <input
-          type="text"
-          placeholder="e.g., Italian, Mexican"
-          value={cuisine}
-          onChange={(e) => setCuisine(e.target.value)}
-        />
+        <div>
+          <label>Cuisine</label>
+          <input
+            type="text"
+            placeholder="e.g., Italian, Mexican"
+            value={cuisine}
+            onChange={(e) => setCuisine(e.target.value)}
+          />
+        </div>
 
-        <label>Cooking Time</label>
-        <select
-          value={cookingTime}
-          onChange={(e) => setCookingTime(e.target.value)}
-        >
-          <option>Less than 30 minutes</option>
-          <option>30-60 minutes</option>
-          <option>More than 1 hour</option>
-        </select>
+        <div>
+          <label>Cooking Time</label>
+          <select
+            value={cookingTime}
+            onChange={(e) => setCookingTime(e.target.value)}
+          >
+            <option>Less than 30 minutes</option>
+            <option>30-60 minutes</option>
+            <option>More than 1 hour</option>
+          </select>
+        </div>
 
-        <label>Complexity</label>
-        <select
-          value={complexity}
-          onChange={(e) => setComplexity(e.target.value)}
-        >
-          <option>Beginner</option>
-          <option>Intermediate</option>
-          <option>Advanced</option>
-        </select>
+        <div>
+          <label>Complexity</label>
+          <select
+            value={complexity}
+            onChange={(e) => setComplexity(e.target.value)}
+          >
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+          </select>
+        </div>
 
-        <button onClick={handleSubmit}>Generate Recipe</button>
+        <div>
+          <button onClick={handleSubmit}>Generate Recipe</button>
+        </div>
       </div>
     </div>
   );
