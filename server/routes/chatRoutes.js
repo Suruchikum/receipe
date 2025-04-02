@@ -140,7 +140,29 @@ Create a detailed recipe based on the following:
       - Cuisine Preference: ${cuisine || "Any"}
       - Cooking Time: ${cookingTime || "Flexible"}
       - Complexity: ${complexity || "Moderate"}
-      Include preparation steps and provide a suitable name.
+
+After recipe generation provide below info in html readable markdown table format.
+ Nutritional Information - Calories, Carbs, Proteins, Fats
+ Health Benefits of each ingredient
+ Shopping list with quantity
+
+### Nutritional Information:
+| Calories | Carbs (g) | Protein (g) | Fat (g) |
+|----------|----------|------------|--------|
+| XYZ kcal | XYZ g    | XYZ g      | XYZ g  |
+
+### Health Benefits:
+| Ingredient | Health Benefits |
+|------------|----------------|
+| XYZ        | XYZ benefits   |
+| XYZ        | XYZ benefits   |
+
+### Shopping List:
+| Ingredient | Quantity |
+|------------|---------|
+| XYZ        | XYZ     |
+| XYZ        | XYZ     |
+
       Format your response in *Markdown*.
 
 `;
@@ -229,7 +251,7 @@ Create a detailed recipe based on the following:
       recipe += chunk.choices[0]?.delta?.content || "";
     }
 
-    console.log("✅ Recipe generated successfully!");
+    console.log("✅ Recipe generated successfully!", validationResponse);
 
     res.status(200).json({
       success: true,
