@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+// const { GoogleGenAI } = require("@google/genai");
 require("dotenv").config();
 
 const indexRoutes = require("./routes/indexRoutes");
