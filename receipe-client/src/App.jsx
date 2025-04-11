@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 import RecipeCard from "./RecipeCard";
-import Markdown from "react-markdown";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 // import axios from "axios";
 function App() {
@@ -14,7 +15,7 @@ function App() {
 
   async function generateVoice(text) {
     try {
-      const response = await fetch("http://localhost:4700/api/tts", {
+      const response = await fetch("http://localhost:4900/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
@@ -26,6 +27,17 @@ function App() {
       console.error("Error:", error);
     }
   }
+  /* fetch("http://localhost:4000/recipeStream?ingredients=tomato,onion,potato")
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        document.getElementById("recipe-output").innerHTML = data.message;
+      } else {
+        document.getElementById("recipe-output").innerHTML =
+          "Error: " + data.message;
+      }
+    })
+    .catch((error) => console.error("Fetch error:", error)); */
 
   const readRecipe = () => {
     if (!recipeText) return;
@@ -76,7 +88,7 @@ function App() {
   async function checkJobStatus(jobId) {
     try {
       const response = await fetch(
-        `http://localhost:4700/api/tts/status?id=${jobId}`
+        `http://localhost:4900/api/tts/status?id=${jobId}`
       );
       const data = await response.json();
       console.log("Job Status:", data);
@@ -92,6 +104,7 @@ function App() {
         <RecipeCard
           recipeContent={setRecipeText}
           setRecipeImage={setRecipeImage}
+          invalidIngredients={setRecipeText}
         />
         {recipeText && (
           <div className="speakersGroup">
@@ -109,8 +122,11 @@ function App() {
           className="recepieContainer"
           style={{ backgroundImage: `url(${recipeImage})` }}
         >
-          {<Markdown>{recipeText}</Markdown> ||
-            "Your recipe will appear here..."}
+          {(
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {recipeText}
+            </ReactMarkdown>
+          ) || "Your recipe will appear here..."}
         </div>
       </div>
     </div>
@@ -118,3 +134,4 @@ function App() {
 }
 
 export default App;
+App.js;
